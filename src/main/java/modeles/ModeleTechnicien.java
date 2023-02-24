@@ -5,6 +5,7 @@ import controleurs.Technicien;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ModeleTechnicien {
     private static Bdd uneBdd = new Bdd();
@@ -26,7 +27,6 @@ public class ModeleTechnicien {
                         unResultat.getString("email"),
                         unResultat.getString("mdp"),
                         unResultat.getString("tel"),
-                        "technicien",
                         unResultat.getString("qualification"),
                         unResultat.getString("dateEntree")
                 );
@@ -37,5 +37,42 @@ public class ModeleTechnicien {
             System.out.println("Erreur d'exécution de : " + requete + "\n" + e);
         }
         return leTechnicien;
+    }
+
+    public static ArrayList<Technicien> selectAllTechniciens(String mot) {
+        String requete = "";
+        if (mot.equals("")) {
+            requete = "select * from vueTechniciens;";
+        } else {
+            requete = "select * from vueTechniciens where nom like '%"+mot+"%' or prenom like '%"+mot+"%' or email like '%"+mot+"%' or"
+                    + " adresse like '%"+mot+"%' or qualification like '%"+mot+"%' or dateentree like '%"+mot+"%' or tel like '%"+mot+"%';";
+        }
+        ArrayList<Technicien> lesTechniciens = new ArrayList<Technicien>();
+        try {
+            uneBdd.seConnecter();
+            Statement unStat = uneBdd.getMaConnexion().createStatement();
+            ResultSet desResultats = unStat.executeQuery(requete);
+            //parcourir les résultats et construire des objets clients
+            while (desResultats.next()) {
+                Technicien unTechnicien = new Technicien(
+                        desResultats.getInt("iduser"),
+                        desResultats.getString("nom"),
+                        desResultats.getString("prenom"),
+                        desResultats.getString("adresse"),
+                        desResultats.getString("email"),
+                        desResultats.getString("mdp"),
+                        desResultats.getString("tel"),
+                        desResultats.getString("qualification"),
+                        desResultats.getString("dateentree")
+                );
+                //on ajoute l'instance client dans l'ArrayList
+                lesTechniciens.add(unTechnicien);
+            }
+            unStat.close();
+            uneBdd.seDeconnecter();
+        } catch(SQLException e) {
+            System.out.println("Erreur d'exécution de : " + requete + "\n" + e);
+        }
+        return lesTechniciens;
     }
 }

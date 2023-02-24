@@ -25,7 +25,7 @@ public class Tableau extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int ligne, int colonne) {
-        //retourne la valeur se trouvant au croisement ligne,colonne
+        //retourne la valeur se trouvant au croisement ligne, colonne
         return this.donnees[ligne][colonne];
     }
 
