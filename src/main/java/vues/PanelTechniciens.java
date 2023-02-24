@@ -7,7 +7,7 @@ public class PanelTechniciens extends PanelPrincipal {
 
     public PanelTechniciens() {
         super(Color.blue);
-        //TODO Auto-generated constructor stub
+
     }
 
 }
