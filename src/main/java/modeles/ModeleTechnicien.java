@@ -52,7 +52,7 @@ public class ModeleTechnicien {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();
             ResultSet desResultats = unStat.executeQuery(requete);
-            //parcourir les résultats et construire des objets clients
+            //parcourir les résultats et construire des objets techniciens
             while (desResultats.next()) {
                 Technicien unTechnicien = new Technicien(
                         desResultats.getInt("iduser"),

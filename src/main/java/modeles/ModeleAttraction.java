@@ -48,7 +48,7 @@ public class ModeleAttraction {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();
             ResultSet desResultats = unStat.executeQuery(requete);
-            //parcourir les résultats et construire des objets clients
+            //parcourir les résultats et construire des objets attractions
             while (desResultats.next()) {
                 Attraction uneAttraction = new Attraction(
                         desResultats.getInt("idAttraction"),

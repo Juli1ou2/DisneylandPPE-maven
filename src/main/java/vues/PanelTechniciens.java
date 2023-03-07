@@ -26,7 +26,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
     private JTextField txtQualification = new JTextField();
     private JTextField txtDateEntree = new JTextField();
 
-    //déclaration de table des attractions
+    //déclaration de table des techniciens
     private JTable tableTechniciens;
     private Tableau unTableau;
 
@@ -138,7 +138,6 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
         this.add(this.txtMot);
         this.btOk.setBounds(570, 40, 100, 30);
         this.add(btOk);
-
     }
 
     public Object[][] obtenirTechniciens(String mot){
