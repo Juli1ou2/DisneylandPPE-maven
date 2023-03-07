@@ -88,7 +88,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
                     int retour = JOptionPane.showConfirmDialog(null, "voulez-vous supprimer ce technicien ?", "Suppression technicien", JOptionPane.YES_NO_OPTION);
                     if (retour == 0) {
                         //suppression du technicien dans la BDD
-                        int idtechnicien = (int) unTableau.getValueAt(numLigne, 0);
+                        int idtechnicien = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
                         C_Technicien.deleteTechnicien(idtechnicien);
                         //suppression de la ligne dans le tableau
                         unTableau.supprimerLigne(numLigne);
@@ -251,7 +251,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
 
             if (ok) {
                 int numLigne = tableTechniciens.getSelectedRow();
-                int idtechnicien = (int) unTableau.getValueAt(numLigne, 0);
+                int idtechnicien = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
                 //instanciation d'un technicien
                 Technicien unTechnicien = new Technicien(nom, prenom, adresse, email, mdp, tel, qualification, dateEntree);
                 //modification du technicien dans la BDD

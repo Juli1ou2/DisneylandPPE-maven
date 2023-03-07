@@ -122,7 +122,7 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
                     int retour = JOptionPane.showConfirmDialog(null, "voulez-vous supprimer cette attraction ?", "Suppression attraction", JOptionPane.YES_NO_OPTION);
                     if (retour == 0) {
                         //suppression de l'attraction dans la BDD
-                        int idattraction = (int) unTableau.getValueAt(numLigne, 0);
+                        int idattraction = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
                         C_Attraction.deleteAttraction(idattraction);
                         //suppression de la ligne dans le tableau
                         unTableau.supprimerLigne(numLigne);
@@ -322,7 +322,7 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
 
             if (ok) {
                 int numLigne = tableAttractions.getSelectedRow();
-                int idAttraction = (int) unTableau.getValueAt(numLigne, 0);
+                int idAttraction = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
                 //instanciation d'une attraction
                 Attraction uneAttraction = new Attraction(idAttraction, nom, statut, type, capacite, affluence, prix,
                         heureOuv, heureFerm, url, idParc, idUser);
