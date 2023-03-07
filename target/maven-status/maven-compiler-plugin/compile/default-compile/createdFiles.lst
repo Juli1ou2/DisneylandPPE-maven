@@ -1,4 +1,5 @@
 modeles\ModeleParc.class
+controleurs\Tableau.class
 modeles\ModeleAttraction.class
 vues\VueConnexion.class
 controleurs\C_Transport.class
@@ -29,5 +30,6 @@ vues\PanelPrincipal.class
 vues\PanelRestaurateurs.class
 controleurs\C_Parc.class
 modeles\ModeleTransport.class
+vues\PanelAttractions$1.class
 controleurs\C_Attraction.class
 vues\PanelParcs.class

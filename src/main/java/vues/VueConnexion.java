@@ -24,7 +24,7 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
         this.setTitle("Gestion des interventions");
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(new Color(255, 184, 51));
+        //this.getContentPane().setBackground(new Color(255, 184, 51));
         this.setBounds(200, 200, 700, 300);
         this.setLayout(null);
 
