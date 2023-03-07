@@ -273,9 +273,9 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
                 //instanciation d'une attraction
                 Attraction uneAttraction = new Attraction(0, nom, statut, type, capacite, affluence, prix,
                         heureOuv, heureFerm, url, idParc, idUser);
-                //insertion du new client dans la BDD
+                //insertion de la new attraction dans la BDD
                 C_Attraction.insertAttraction(uneAttraction);
-                //actualisation de la table d'affichage des clients
+                //actualisation de la table d'affichage des attractions
                 uneAttraction = C_Attraction.selectWhereAttraction(nom);
                 int idattraction = uneAttraction.getIdAttraction();
                 Object ligne[] = {idattraction, nom, statut, type, capacite, affluence, prix,
@@ -326,9 +326,9 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
                 //instanciation d'une attraction
                 Attraction uneAttraction = new Attraction(idAttraction, nom, statut, type, capacite, affluence, prix,
                         heureOuv, heureFerm, url, idParc, idUser);
-                //modification du client dans la BDD
+                //modification de l'attraction dans la BDD
                 C_Attraction.updateAttraction(uneAttraction);
-                //actualisation de la tabled'affichage des clients
+                //actualisation de la table d'affichage des attractions
                 Object ligne[] = {idAttraction, nom, statut, type, capacite, affluence, prix,
                         heureOuv, heureFerm, url, idParc, idUser};
                 unTableau.modifierLigne(numLigne, ligne);

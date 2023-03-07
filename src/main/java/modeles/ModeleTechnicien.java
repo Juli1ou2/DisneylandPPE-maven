@@ -75,4 +75,64 @@ public class ModeleTechnicien {
         }
         return lesTechniciens;
     }
+
+    public static void insertTechnicien(Technicien unTechnicien) {
+        String requete = "call insertTechnicien ('" +
+                unTechnicien.getNom() + "', '" +
+                unTechnicien.getPrenom() + "', '" +
+                unTechnicien.getAdresse() + "', '" +
+                unTechnicien.getEmail() + "', '" +
+                unTechnicien.getMdp() + "', '" +
+                unTechnicien.getTel() + "', '" +
+                unTechnicien.getRole() + "', '" +
+                unTechnicien.getQualification() + "', '" +
+                unTechnicien.getDateEntree() + "') ;";
+
+        try {
+            uneBdd.seConnecter();
+            Statement unStat = uneBdd.getMaConnexion().createStatement();
+            unStat.execute(requete);
+            unStat.close();
+            uneBdd.seDeconnecter();
+        } catch(SQLException e) {
+            System.out.println("Erreur d'exécution de : " + requete + "\n" + e);
+        }
+    }
+
+    public static void deleteTechnicien(int idtechnicien) {
+        String requete = "call deleteTechnicien (" + idtechnicien + ") ;";
+        try {
+            uneBdd.seConnecter();
+            Statement unStat = uneBdd.getMaConnexion().createStatement();
+            unStat.execute(requete);
+            unStat.close();
+            uneBdd.seDeconnecter();
+        } catch(SQLException e) {
+            System.out.println("Erreur d'exécution de : " + requete + "\n" + e);
+        }
+    }
+
+    public static void updateTechnicien(Technicien unTechnicien) {
+        String requete = "call updateTechnicien ('" +
+                unTechnicien.getNom() + "', '" +
+                unTechnicien.getPrenom() + "', '" +
+                unTechnicien.getAdresse() + "', '" +
+                unTechnicien.getEmail() + "', '" +
+                unTechnicien.getMdp() + "', '" +
+                unTechnicien.getTel() + "', '" +
+                unTechnicien.getRole() + "', '" +
+                unTechnicien.getQualification() + "', '" +
+                unTechnicien.getDateEntree() + "', '" +
+                unTechnicien.getIduser() + "')";
+
+        try {
+            uneBdd.seConnecter();
+            Statement unStat = uneBdd.getMaConnexion().createStatement();
+            unStat.execute(requete);
+            unStat.close();
+            uneBdd.seDeconnecter();
+        } catch(SQLException e) {
+            System.out.println("Erreur d'exécution de : " + requete + "\n" + e);
+        }
+    }
 }
