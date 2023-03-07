@@ -23,8 +23,6 @@ import controleurs.Technicien;
 
 public class VueGenerale extends JFrame implements ActionListener, KeyListener {
 
-    
-
     private JPanel panelMenu= new JPanel();
 	private JButton btParcs= new JButton("Parcs");
 	private JButton btAttractions= new JButton("Attractions");
@@ -35,39 +33,31 @@ public class VueGenerale extends JFrame implements ActionListener, KeyListener {
 	// private JButton btParcs= new JButton("Mon Profil");
 	private JButton btQuitter= new JButton("Quitter");
 	
-	private static PanelParcs unPanelParcs;
+	private static PanelParcs unPanelParcs = new PanelParcs();
 	private static PanelAttractions unPanelAttractions= new PanelAttractions();
 	private static PanelTechniciens unPanelTechniciens= new PanelTechniciens();
 	private static PanelRestaurants unPanelRestaurants= new PanelRestaurants();
 	private static PanelRestaurateurs unPanelRestaurateurs= new PanelRestaurateurs();
 	private static PanelTransports unPanelTransports= new PanelTransports();
-	
-
-
-    //
 
     public VueGenerale(Technicien unTechnicien) {
-		//Instanciation du PanelParcs
-		unPanelParcs= new PanelParcs();
 
-		//Logo de disney (a place au dessus du panel)
-        ImageIcon logo = new ImageIcon("src/images/logo.png"); //Image DinseyLandPPE
-        JLabel monLogo = new JLabel(logo);
-        monLogo.setBounds(500, 10, 200, 100); // Taille du logo de DisneyLandPPE
-        this.add(monLogo);
-        
-		
-		this.setTitle("Gestion des interventions");
+		this.setTitle("Gestion Disneyland Paris");
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setBackground(new Color(251, 253, 253) ); // couleur de background du panel generale (Blanc)
 		this.setBounds(200, 15, 1200, 800); // Emplacement et Taille du panel generale lors de l'ouverture 
 		this.setLayout(null);
+
+		//Logo de Disney
+		ImageIcon logo = new ImageIcon("src/main/java/images/logoVueGenerale.png");
+		JLabel monLogo = new JLabel(logo);
+		monLogo.setBounds(100, 20, 248, 70);
+		this.add(monLogo);
 		
-		//Construction du panel connexion
 		this.panelMenu.setBounds(100, 100, 1000, 40);
 		this.panelMenu.setBackground(new Color(251, 253, 253)); // couleur de background du panel generale (Blanc)
-		//1 lignes sur 7 colonnes
+		//1 ligne sur 7 colonnes
 		this.panelMenu.setLayout(new GridLayout(1, 7));
 		this.panelMenu.add(this.btParcs);
 		this.panelMenu.add(this.btAttractions);

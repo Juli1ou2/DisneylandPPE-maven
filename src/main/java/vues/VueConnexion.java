@@ -21,14 +21,14 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
     private JPanel panelCon = new JPanel();
 
     public VueConnexion() {
-        this.setTitle("Gestion Disneyland Paris");
+        this.setTitle("Connexion au portail Disneyland Paris");
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //this.getContentPane().setBackground(new Color(255, 184, 51));
         this.setBounds(200, 200, 480, 340);
         this.setLayout(null);
 
-        ImageIcon logo = new ImageIcon("src/main/java/images/logo2.png");
+        ImageIcon logo = new ImageIcon("src/main/java/images/logoConnexion.png");
         JLabel monLogo = new JLabel(logo);
         monLogo.setBounds(40, 40, 380, 107);
         this.add(monLogo);
