@@ -21,20 +21,20 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
     private JPanel panelCon = new JPanel();
 
     public VueConnexion() {
-        this.setTitle("Gestion");
+        this.setTitle("Gestion Disneyland Paris");
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //this.getContentPane().setBackground(new Color(255, 184, 51));
-        this.setBounds(200, 200, 700, 300);
+        this.setBounds(200, 200, 480, 340);
         this.setLayout(null);
 
-        ImageIcon logo = new ImageIcon("src/images/logo.png");
+        ImageIcon logo = new ImageIcon("src/main/java/images/logo2.png");
         JLabel monLogo = new JLabel(logo);
-        monLogo.setBounds(20, 40, 200, 200);
+        monLogo.setBounds(40, 40, 380, 107);
         this.add(monLogo);
 
         //construction du panel connexion
-        this.panelCon.setBounds(280, 40, 380, 100);
+        this.panelCon.setBounds(40, 180, 380, 100);
         //this.panelCon.setBackground(Color.cyan);
         this.panelCon.setLayout(new GridLayout(3, 2)); //segmentation en matrice : 3 lignes et 2 colonnes
         this.panelCon.add(new JLabel("Email"));
