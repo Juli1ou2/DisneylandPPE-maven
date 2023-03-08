@@ -35,7 +35,6 @@ public class PanelRestaurateurs extends PanelPrincipal implements ActionListener
     private JButton btOk = new JButton("OK");
     
     public PanelRestaurateurs() {
-        super(Color.lightGray);
 
         //construction du panelForm
         this.panelForm.setBounds(40, 80, 300, 300);

@@ -35,7 +35,6 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
     private JButton btOk = new JButton("OK");
 
     public PanelTechniciens() {
-        super(Color.lightGray);
 
         //construction du panelForm
         this.panelForm.setBounds(40, 80, 300, 300);

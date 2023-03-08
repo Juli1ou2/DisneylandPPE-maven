@@ -38,7 +38,6 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
     private JButton btOk = new JButton("OK");
 
     public PanelAttractions() {
-        super(Color.lightGray);
 
         //construction du panelForm
         this.panelForm.setBounds(40, 80, 300, 300);

@@ -64,7 +64,7 @@ public class ModeleAttraction {
                         desResultats.getInt("idParc"),
                         desResultats.getInt("idUser")
                 );
-                //on ajoute l'instance client dans l'ArrayList
+                //on ajoute l'instance attraction dans l'ArrayList
                 lesAttractions.add(uneAttraction);
             }
             unStat.close();
@@ -82,7 +82,7 @@ public class ModeleAttraction {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();
             ResultSet unResultat = unStat.executeQuery(requete);
-            //tester si il y a un client
+            //tester si il y a une attraction
             if (unResultat.next()) {
                 lAttraction = new Attraction(
                         unResultat.getInt("idattraction"),
