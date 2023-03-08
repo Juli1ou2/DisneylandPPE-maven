@@ -3,23 +3,20 @@ package controleurs;
 public class Restaurateur extends User {
     private String qualification, anciennete;
 
-    public Restaurateur(int iduser, String nom, String prenom, String adresse, String email, String mdp, String tel, String role, String qualification, String anciennete) {
-        super(iduser, nom, prenom, adresse, email, mdp, tel, role);
-        this.role = "restaurateur";
+    public Restaurateur(int iduser, String nom, String prenom, String adresse, String email, String mdp, String tel, String qualification, String anciennete) {
+        super(iduser, nom, prenom, adresse, email, mdp, tel, "restaurateur");
         this.qualification = qualification;
         this.anciennete = anciennete;
     }
 
-    public Restaurateur(String nom, String prenom, String adresse, String email, String mdp, String tel, String role, String qualification, String anciennete) {
-        super(nom, prenom, adresse, email, mdp, tel, role);
-        this.role = "restaurateur";
+    public Restaurateur(String nom, String prenom, String adresse, String email, String mdp, String tel, String qualification, String anciennete) {
+        super(nom, prenom, adresse, email, mdp, tel, "restaurateur");
         this.qualification = qualification;
         this.anciennete = anciennete;
     }
 
     public Restaurateur(){
         super();
-        this.role = "restaurateur";
         this.qualification = "";
         this.anciennete = "";
     }
