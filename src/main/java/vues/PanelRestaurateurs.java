@@ -84,10 +84,10 @@ public class PanelRestaurateurs extends PanelPrincipal implements ActionListener
                 int numLigne = 0;
                 if (e.getClickCount() == 2) {
                     numLigne = tableRestaurateurs.getSelectedRow();
-                    int retour = JOptionPane.showConfirmDialog(null, "voulez-vous supprimer ce restaurateur ?", "Suppression restaurateur", JOptionPane.YES_NO_OPTION);
+                    int retour = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer ce restaurateur ?", "Suppression restaurateur", JOptionPane.YES_NO_OPTION);
                     if (retour == 0) {
                         //suppression du restaurateur dans la BDD
-                        int idrestaurateur = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
+                        int idrestaurateur = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                         C_Restaurateur.deleteRestaurateur(idrestaurateur);
                         //suppression de la ligne dans le tableau
                         unTableau.supprimerLigne(numLigne);
@@ -141,7 +141,7 @@ public class PanelRestaurateurs extends PanelPrincipal implements ActionListener
 
     public Object[][] obtenirRestaurateurs(String mot){
         ArrayList<Restaurateur> lesRestaurateurs = C_Restaurateur.selectAllRestaurateurs(mot);
-        Object [][] matrice = new Object[lesRestaurateurs.size()][11];
+        Object [][] matrice = new Object[lesRestaurateurs.size()][9];
 
         int i=0;
         for (Restaurateur unRestaurateur : lesRestaurateurs) {
@@ -237,9 +237,9 @@ public class PanelRestaurateurs extends PanelPrincipal implements ActionListener
 
             if (ok) {
                 int numLigne = tableRestaurateurs.getSelectedRow();
-                int idRestaurateur = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
+                int idRestaurateur = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                 //instanciation d'un restaurateur
-                Restaurateur unRestaurateur = new Restaurateur(nom, prenom, adresse, email, mdp, tel, qualification, anciennete);
+                Restaurateur unRestaurateur = new Restaurateur(idRestaurateur, nom, prenom, adresse, email, mdp, tel, qualification, anciennete);
                 //modification du restaurateur dans la BDD
                 C_Restaurateur.updateRestaurateur(unRestaurateur);
                 //actualisation de la table d'affichage des restaurateurs

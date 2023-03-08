@@ -120,8 +120,9 @@ public class ModeleRestaurant {
                 unRestaurant.getAffluence()+"', type ='"+
                 unRestaurant.getType()+"', capacite ='"+
                 unRestaurant.getCapacite()+"', url ='"+
-                unRestaurant.getUrl()+"',  iduser ='"+
+                unRestaurant.getUrl()+"', iduser ='"+
                 unRestaurant.getIduser()+"' where idRestaurant = " + unRestaurant.getIdRestaurant() + ";";
+        System.out.println("requête : " + requete);
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();

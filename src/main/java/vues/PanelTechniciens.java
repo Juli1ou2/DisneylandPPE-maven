@@ -84,10 +84,10 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
                 int numLigne = 0;
                 if (e.getClickCount() == 2) {
                     numLigne = tableTechniciens.getSelectedRow();
-                    int retour = JOptionPane.showConfirmDialog(null, "voulez-vous supprimer ce technicien ?", "Suppression technicien", JOptionPane.YES_NO_OPTION);
+                    int retour = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer ce technicien ?", "Suppression technicien", JOptionPane.YES_NO_OPTION);
                     if (retour == 0) {
                         //suppression du technicien dans la BDD
-                        int idtechnicien = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
+                        int idtechnicien = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                         C_Technicien.deleteTechnicien(idtechnicien);
                         //suppression de la ligne dans le tableau
                         unTableau.supprimerLigne(numLigne);
@@ -141,7 +141,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
 
     public Object[][] obtenirTechniciens(String mot){
         ArrayList<Technicien> lesTechniciens = C_Technicien.selectAllTechniciens(mot);
-        Object [][] matrice = new Object[lesTechniciens.size()][11];
+        Object [][] matrice = new Object[lesTechniciens.size()][9];
 
         int i=0;
         for (Technicien unTechnicien : lesTechniciens) {
@@ -249,9 +249,9 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
 
             if (ok) {
                 int numLigne = tableTechniciens.getSelectedRow();
-                int idtechnicien = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
+                int idtechnicien = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                 //instanciation d'un technicien
-                Technicien unTechnicien = new Technicien(nom, prenom, adresse, email, mdp, tel, qualification, dateEntree);
+                Technicien unTechnicien = new Technicien(idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree);
                 //modification du technicien dans la BDD
                 C_Technicien.updateTechnicien(unTechnicien);
                 //actualisation de la table d'affichage des techniciens

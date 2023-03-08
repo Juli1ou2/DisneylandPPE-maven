@@ -83,10 +83,10 @@ public class PanelRestaurants extends PanelPrincipal implements ActionListener {
                 int numLigne = 0;
                 if (e.getClickCount() == 2) {
                     numLigne = tableRestaurants.getSelectedRow();
-                    int retour = JOptionPane.showConfirmDialog(null, "voulez-vous supprimer ce restaurant ?", "Suppression restaurant", JOptionPane.YES_NO_OPTION);
+                    int retour = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer ce restaurant ?", "Suppression restaurant", JOptionPane.YES_NO_OPTION);
                     if (retour == 0) {
                         //suppression du restaurant dans la BDD
-                        int idrestaurant = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
+                        int idrestaurant = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                         C_Restaurant.deleteRestaurant(idrestaurant);
                         //suppression de la ligne dans le tableau
                         unTableau.supprimerLigne(numLigne);
@@ -166,7 +166,7 @@ public class PanelRestaurants extends PanelPrincipal implements ActionListener {
 
     public Object[][] obtenirRestaurants(String mot){
         ArrayList<Restaurant> lesRestaurants = C_Restaurant.selectAllRestaurants(mot);
-        Object [][] matrice = new Object[lesRestaurants.size()][11];
+        Object [][] matrice = new Object[lesRestaurants.size()][8];
 
         int i=0;
         for (Restaurant unRestaurant : lesRestaurants) {
@@ -254,13 +254,13 @@ public class PanelRestaurants extends PanelPrincipal implements ActionListener {
             try{
                 capacite = Integer.parseInt(this.txtCapacite.getText());
             } catch (NumberFormatException exp){
-                JOptionPane.showMessageDialog(this, "Erreur de saisie de la capacité !");
+                JOptionPane.showMessageDialog(this, "Erreur de saisie de la capacité maximale !");
             }
             int effectifMax = 0;
             try{
                 effectifMax = Integer.parseInt(this.txtEffectifMax.getText());
             } catch (NumberFormatException exp){
-                JOptionPane.showMessageDialog(this, "Erreur de saisie de la capacité maximale !");
+                JOptionPane.showMessageDialog(this, "Erreur de saisie de l'effectif maximal !");
             }
 
             //récupération iduser
@@ -278,9 +278,9 @@ public class PanelRestaurants extends PanelPrincipal implements ActionListener {
             
             if (ok) {
                 int numLigne = tableRestaurants.getSelectedRow();
-                int idRestaurant = Integer.parseInt((String) unTableau.getValueAt(numLigne, 0));
+                int idRestaurant = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                 //instanciation d'un restaurant
-                Restaurant unRestaurant = new Restaurant(nom, theme, effectifMax, affluence, type, capacite, url, iduser);
+                Restaurant unRestaurant = new Restaurant(idRestaurant, nom, theme, effectifMax, affluence, type, capacite, url, iduser);
                 //modification du restaurant dans la BDD
                 C_Restaurant.updateRestaurant(unRestaurant);
                 //actualisation de la table d'affichage des Restaurants

@@ -108,7 +108,7 @@ public class ModeleRestaurateur {
                 unRestaurateur.getEmail() + "', '" +
                 unRestaurateur.getMdp() + "', '" +
                 unRestaurateur.getTel() + "', '" +
-                unRestaurateur.getRole() + "', '" +
+                //unRestaurateur.getRole() + "', '" +
                 unRestaurateur.getQualification() + "', '" +
                 unRestaurateur.getAnciennete() + "', '" +
                 unRestaurateur.getIduser() + "')";
