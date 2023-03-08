@@ -9,5 +9,8 @@
         <module name="DisneylandPPE-maven" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DisneylandPPE-maven" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
