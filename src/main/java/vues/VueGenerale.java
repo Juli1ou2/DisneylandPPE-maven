@@ -2,8 +2,7 @@ package vues;
 
 
 //import de la libairy java
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -48,6 +47,8 @@ public class VueGenerale extends JFrame implements ActionListener, KeyListener {
 		this.getContentPane().setBackground(new Color(251, 253, 253) ); // couleur de background du panel generale (Blanc)
 		this.setBounds(200, 15, 1200, 800); // Emplacement et Taille du panel generale lors de l'ouverture 
 		this.setLayout(null);
+		Image icone = Toolkit.getDefaultToolkit().getImage("src/main/java/images/icone.png");
+		this.setIconImage(icone);
 
 		//Logo de Disney
 		ImageIcon logo = new ImageIcon("src/main/java/images/logoVueGenerale.png");

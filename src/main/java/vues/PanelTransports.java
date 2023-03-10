@@ -61,7 +61,7 @@ public class PanelTransports extends PanelPrincipal implements ActionListener {
         this.panelTable.setBounds(400, 80, 500, 300);
         //this.panelTable.setBackground(new Color(255, 184, 51));
         this.panelTable.setLayout(null);
-        String entetes[] = {"ID Transport", "Libelle ", "Type ", "Capacité", "Affluence", "Prix"};
+        String entetes[] = {"ID Transport", "Libelle ", "Type ", "Capacité", "Affluence", "Horaire", "Prix"};
         //instanciation de la classe Tableau du controleur
         unTableau = new Tableau(this.obtenirTransports(""), entetes);
         this.tableTransports = new JTable(unTableau);
@@ -265,7 +265,7 @@ public class PanelTransports extends PanelPrincipal implements ActionListener {
                 //modification de Transport dans la BDD
                 C_Transport.updateTransport(unTransport);
                 //actualisation de la table d'affichage des transports
-                Object ligne[] = {idTransport, libelle , type , capacite  , affluence , capacite, horaire , prix };
+                Object ligne[] = {idTransport, libelle, type, capacite, affluence, horaire, prix };
                 unTableau.modifierLigne(numLigne, ligne);
                 JOptionPane.showMessageDialog(this, "Modification réussie de Transport !");
                 this.viderChamps();

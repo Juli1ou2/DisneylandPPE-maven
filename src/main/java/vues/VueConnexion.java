@@ -27,6 +27,8 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
         //this.getContentPane().setBackground(new Color(255, 184, 51));
         this.setBounds(200, 200, 480, 340);
         this.setLayout(null);
+        Image icone = Toolkit.getDefaultToolkit().getImage("src/main/java/images/icone.png");
+        this.setIconImage(icone);
 
         ImageIcon logo = new ImageIcon("src/main/java/images/logoConnexion.png");
         JLabel monLogo = new JLabel(logo);
