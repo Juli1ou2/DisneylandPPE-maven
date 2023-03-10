@@ -1,11 +1,13 @@
 modeles\ModeleParc.class
 controleurs\Tableau.class
+vues\PanelRestaurateurs$1.class
 modeles\ModeleAttraction.class
 vues\VueConnexion.class
 controleurs\C_Transport.class
 controleurs\Technicien.class
 controleurs\Disneyland.class
 controleurs\Client.class
+vues\PanelParcs$1.class
 controleurs\C_Client.class
 controleurs\Parc.class
 controleurs\User.class
@@ -25,6 +27,7 @@ controleurs\Restaurateur.class
 modeles\Bdd.class
 modeles\ModeleRestaurateur.class
 controleurs\C_Restaurant.class
+vues\PanelRestaurants$1.class
 vues\PanelTechniciens.class
 vues\PanelPrincipal.class
 vues\PanelRestaurateurs.class
@@ -32,4 +35,5 @@ controleurs\C_Parc.class
 modeles\ModeleTransport.class
 vues\PanelAttractions$1.class
 controleurs\C_Attraction.class
+vues\PanelTechniciens$1.class
 vues\PanelParcs.class

@@ -17,7 +17,7 @@ public class ModeleTransport {
                 unTransport.getCapacite()+"','"+
                 unTransport.getAffluence()+"','"+
                 unTransport.getHoraire()+"','"+
-                unTransport.getPrix()+"','";
+                unTransport.getPrix()+"');";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -32,7 +32,7 @@ public class ModeleTransport {
     public static ArrayList<Transport> selectAllTransports(String mot) {
         String requete = "";
         if (mot.equals("")) {
-            requete = "select * from transport ;";
+            requete = "select * from transport;";
         } else {
             requete = "select * from transport where libelle like '%"+mot+"%' or type like '%"+mot+"%' or"
                     + " capacite like '%"+mot+"%' or affluence like '%"+mot+"%' or horaire like '%+"+mot+"%' or prix like '%\"+mot+\"%';";
@@ -46,7 +46,7 @@ public class ModeleTransport {
             while (desResultats.next()) {
                 Transport unTransport = new Transport(
                         desResultats.getInt("idTransport"),
-                        desResultats.getString("libelle "),
+                        desResultats.getString("libelle"),
                         desResultats.getString("type"),
                         desResultats.getInt("capacite"),
                         desResultats.getString("affluence"),
@@ -65,7 +65,7 @@ public class ModeleTransport {
     }
 
     public static Transport selectWhereTransport(String libelle) {
-        String requete = "select * from Transport where nom ='" + libelle + "';";
+        String requete = "select * from transport where libelle ='" + libelle + "';";
         Transport leTransport = null;
         try {
             uneBdd.seConnecter();
@@ -75,7 +75,7 @@ public class ModeleTransport {
             if (unResultat.next()) {
                 leTransport = new Transport(
                         unResultat.getInt("idTransport"),
-                        unResultat.getString("libelle "),
+                        unResultat.getString("libelle"),
                         unResultat.getString("type"),
                         unResultat.getInt("capacite"),
                         unResultat.getString("affluence"),
@@ -92,7 +92,7 @@ public class ModeleTransport {
     }
 
     public static void updateTransport(Transport unTransport) {
-        String requete = "update transport set nom = '"+
+        String requete = "update transport set libelle = '"+
                 unTransport.getLibelle ()+"', type ='"+
                 unTransport.getType()+"', capacite ='" +
                 unTransport.getCapacite()+"', affluence ='"+
