@@ -165,7 +165,7 @@ drop procedure if exists deleteTechnicien ;
 create procedure deleteTechnicien(IN p_iduser int(3))
 begin
    delete from technicien where iduser = p_iduser;
-    delete from user where iduser = p_iduser;
+   delete from user where iduser = p_iduser;
 end$
 
 drop procedure if exists updateTechnicien  ;
@@ -176,14 +176,6 @@ begin
    update technicien set qualification = p_qualification, dateentree = p_dateentree 
    where iduser = p_iduser ;
 end $
-delimiter ;
-
-delimiter $
-create procedure deleteTechnicien(IN p_iduser int(3))
-begin
-   delete from technicien where iduser = p_iduser;
-	delete from user where iduser = p_iduser;
-end$
 delimiter ;
 -- ________________________________________________________________________________ --
 delimiter $
