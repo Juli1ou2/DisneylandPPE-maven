@@ -15,6 +15,7 @@ vues\PanelAttractions.class
 vues\VueGenerale.class
 controleurs\Transport.class
 modeles\ModeleClient.class
+vues\PanelTransports$1.class
 modeles\ModeleRestaurant.class
 modeles\ModeleTechnicien.class
 controleurs\Attraction.class

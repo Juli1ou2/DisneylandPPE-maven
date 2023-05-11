@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PanelAttractions extends PanelPrincipal implements ActionListener {
 
@@ -37,7 +38,7 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
     private JTextField txtMot = new JTextField();
     private JButton btOk = new JButton("OK");
 
-    public PanelAttractions() {
+    public PanelAttractions(Technicien unTechnicien) {
 
         //construction du panelForm
         this.panelForm.setBounds(40, 80, 300, 300);
@@ -67,7 +68,11 @@ public class PanelAttractions extends PanelPrincipal implements ActionListener {
         this.panelForm.add(btAnnuler);
         this.panelForm.add(btEnregistrer);
         this.panelForm.setBackground(Color.white);
-        this.panelForm.setVisible(true);
+        if(unTechnicien.getRoleBis().equals("admin")){
+            this.panelForm.setVisible(true);
+        } else{
+            this.panelForm.setVisible(false);
+        }
 
         this.add(panelForm);
 

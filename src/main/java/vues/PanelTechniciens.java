@@ -25,6 +25,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
     private JTextField txtTel = new JTextField();
     private JTextField txtQualification = new JTextField();
     private JTextField txtDateEntree = new JTextField();
+    private JComboBox<String> cbxRoleBis = new JComboBox<String>();
 
     //déclaration de table des techniciens
     private JTable tableTechniciens;
@@ -34,11 +35,11 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
     private JTextField txtMot = new JTextField();
     private JButton btOk = new JButton("OK");
 
-    public PanelTechniciens() {
+    public PanelTechniciens(Technicien unTechnicien) {
 
         //construction du panelForm
         this.panelForm.setBounds(40, 80, 300, 300);
-        this.panelForm.setLayout(new GridLayout(9, 2));
+        this.panelForm.setLayout(new GridLayout(10, 2));
         this.panelForm.add(new JLabel("Nom : "));
         this.panelForm.add(this.txtNom);
         this.panelForm.add(new JLabel("Prénom : "));
@@ -55,10 +56,16 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
         this.panelForm.add(this.txtQualification);
         this.panelForm.add(new JLabel("Date d'entrée : "));
         this.panelForm.add(this.txtDateEntree);
+        this.panelForm.add(new JLabel("Rôle : "));
+        this.panelForm.add(this.cbxRoleBis);
         this.panelForm.add(btAnnuler);
         this.panelForm.add(btEnregistrer);
         this.panelForm.setBackground(Color.white);
-        this.panelForm.setVisible(true);
+        if(unTechnicien.getRoleBis().equals("admin")){
+            this.panelForm.setVisible(true);
+        } else{
+            this.panelForm.setVisible(false);
+        }
 
         this.add(panelForm);
 
@@ -67,7 +74,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
         //this.panelTable.setBackground(new Color(255, 184, 51));
         this.panelTable.setLayout(null);
         String entetes[] = {"ID Technicien", "Nom", "Prénom", "Adresse", "Email", "Mot de passe", "Téléphone",
-                "Qualification", "Date d'entrée"};
+                "Qualification", "Date d'entrée", "Rôle"};
         //instanciation de la classe Tableau du controleur
         unTableau = new Tableau(this.obtenirTechniciens(""), entetes);
         this.tableTechniciens = new JTable(unTableau);
@@ -102,6 +109,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
                     txtTel.setText((String) unTableau.getValueAt(numLigne, 6));
                     txtQualification.setText((String) unTableau.getValueAt(numLigne, 7));
                     txtDateEntree.setText((String) unTableau.getValueAt(numLigne, 8));
+                    cbxRoleBis.setSelectedItem(unTableau.getValueAt(numLigne, 9));
                     btEnregistrer.setText("Modifier");
                 }
             }
@@ -137,11 +145,13 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
         this.add(this.txtMot);
         this.btOk.setBounds(570, 40, 100, 30);
         this.add(btOk);
+
+        this.remplirCBX();
     }
 
     public Object[][] obtenirTechniciens(String mot){
         ArrayList<Technicien> lesTechniciens = C_Technicien.selectAllTechniciens(mot);
-        Object [][] matrice = new Object[lesTechniciens.size()][9];
+        Object [][] matrice = new Object[lesTechniciens.size()][10];
 
         int i=0;
         for (Technicien unTechnicien : lesTechniciens) {
@@ -154,6 +164,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
             matrice[i][6] = unTechnicien.getTel();
             matrice[i][7] = unTechnicien.getQualification();
             matrice[i][8] = unTechnicien.getDateEntree();
+            matrice[i][9] = unTechnicien.getRoleBis();
             i++;
         }
         return matrice;
@@ -170,6 +181,31 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
         this.txtDateEntree.setText("");
     }
 
+    public void remplirCBX() {
+        this.cbxRoleBis.removeAllItems();
+        this.cbxRoleBis.addItem("secretaire");
+        this.cbxRoleBis.addItem("admin");
+    }
+
+    public boolean erreurEmail(String email){
+        if (email.contains("@") && email.contains(".")){
+            return false;
+        } else{
+            JOptionPane.showMessageDialog(this, "Adresse email erronée !");
+            return true;
+        }
+    }
+
+    public boolean erreurMdp(String mdp){
+        if (mdp.length() >= 3 && mdp.length() <= 15){
+            return false;
+        } else{
+            JOptionPane.showMessageDialog(this, "Mot de passe de mauvaise taille !");
+            return true;
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btAnnuler) {
@@ -183,6 +219,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
             String tel = this.txtTel.getText();
             String qualification = this.txtQualification.getText();
             String dateEntree = this.txtDateEntree.getText();
+            String roleBis = this.cbxRoleBis.getSelectedItem().toString();
 
             boolean ok = true;
             if (nom.equals("")) {
@@ -204,15 +241,28 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
                 this.txtDateEntree.setBackground(Color.white);
             }
 
+            if (this.erreurEmail(email)) {
+                this.txtEmail.setBackground(Color.red);
+                ok = false;
+            } else {
+                this.txtEmail.setBackground(Color.white);
+            }
+            if (this.erreurMdp(mdp)) {
+                this.txtMdp.setBackground(Color.red);
+                ok = false;
+            } else {
+                this.txtMdp.setBackground(Color.white);
+            }
+
             if (ok) {
                 //instanciation d'un technicien
-                Technicien unTechnicien = new Technicien(nom, prenom, adresse, email, mdp, tel, qualification, dateEntree);
+                Technicien unTechnicien = new Technicien(nom, prenom, adresse, email, mdp, tel, qualification, dateEntree, roleBis);
                 //insertion du new technicien dans la BDD
                 C_Technicien.insertTechnicien(unTechnicien);
                 //actualisation de la table d'affichage des techniciens
                 unTechnicien = C_Technicien.selectWhereTechnicien(email, mdp);
                 int idtechnicien = unTechnicien.getIduser();
-                Object ligne[] = {idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree};
+                Object ligne[] = {idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree, roleBis};
                 unTableau.insererLigne(ligne);
                 JOptionPane.showMessageDialog(this, "Insertion réussie du technicien !");
                 this.viderChamps();
@@ -226,6 +276,7 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
             String tel = this.txtTel.getText();
             String qualification = this.txtQualification.getText();
             String dateEntree = this.txtDateEntree.getText();
+            String roleBis = this.cbxRoleBis.getSelectedItem().toString();
 
             boolean ok = true;
             if (nom.equals("")) {
@@ -251,11 +302,11 @@ public class PanelTechniciens extends PanelPrincipal implements ActionListener {
                 int numLigne = tableTechniciens.getSelectedRow();
                 int idtechnicien = Integer.parseInt(unTableau.getValueAt(numLigne, 0).toString());
                 //instanciation d'un technicien
-                Technicien unTechnicien = new Technicien(idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree);
+                Technicien unTechnicien = new Technicien(idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree, roleBis);
                 //modification du technicien dans la BDD
                 C_Technicien.updateTechnicien(unTechnicien);
                 //actualisation de la table d'affichage des techniciens
-                Object ligne[] = {idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree};
+                Object ligne[] = {idtechnicien, nom, prenom, adresse, email, mdp, tel, qualification, dateEntree, roleBis};
                 unTableau.modifierLigne(numLigne, ligne);
                 JOptionPane.showMessageDialog(this, "Modification réussie du technicien !");
                 this.viderChamps();

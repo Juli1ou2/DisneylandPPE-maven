@@ -28,7 +28,8 @@ public class ModeleTechnicien {
                         unResultat.getString("mdp"),
                         unResultat.getString("tel"),
                         unResultat.getString("qualification"),
-                        unResultat.getString("dateEntree")
+                        unResultat.getString("dateEntree"),
+                        unResultat.getString("roleBis")
                 );
             }
             unStat.close();
@@ -45,7 +46,7 @@ public class ModeleTechnicien {
             requete = "select * from vueTechniciens;";
         } else {
             requete = "select * from vueTechniciens where nom like '%"+mot+"%' or prenom like '%"+mot+"%' or email like '%"+mot+"%' or"
-                    + " adresse like '%"+mot+"%' or qualification like '%"+mot+"%' or dateentree like '%"+mot+"%' or tel like '%"+mot+"%';";
+                    + " adresse like '%"+mot+"%' or qualification like '%"+mot+"%' or dateentree like '%"+mot+"%' or tel like '%"+mot+"%' or roleBis like '%+mot+%';";
         }
         ArrayList<Technicien> lesTechniciens = new ArrayList<Technicien>();
         try {
@@ -63,7 +64,8 @@ public class ModeleTechnicien {
                         desResultats.getString("mdp"),
                         desResultats.getString("tel"),
                         desResultats.getString("qualification"),
-                        desResultats.getString("dateentree")
+                        desResultats.getString("dateentree"),
+                        desResultats.getString("roleBis")
                 );
                 //on ajoute l'instance client dans l'ArrayList
                 lesTechniciens.add(unTechnicien);
@@ -86,7 +88,8 @@ public class ModeleTechnicien {
                 unTechnicien.getTel() + "', '" +
                 unTechnicien.getRole() + "', '" +
                 unTechnicien.getQualification() + "', '" +
-                unTechnicien.getDateEntree() + "') ;";
+                unTechnicien.getDateEntree() + "', '" +
+                unTechnicien.getRoleBis() + "') ;";
 
         try {
             uneBdd.seConnecter();
@@ -123,6 +126,7 @@ public class ModeleTechnicien {
                 unTechnicien.getRole() + "', '" +
                 unTechnicien.getQualification() + "', '" +
                 unTechnicien.getDateEntree() + "', '" +
+                unTechnicien.getRoleBis() + "', '" +
                 unTechnicien.getIduser() + "')";
 
         try {

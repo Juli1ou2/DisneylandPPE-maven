@@ -20,6 +20,7 @@ CREATE TABLE technicien(
    iduser int(3) not null ,
    qualification VARCHAR(50),
    dateentree date,
+   roleBis enum("admin", "secretaire"),
    PRIMARY KEY(iduser), 
    foreign key (iduser) references user(iduser)
 );
@@ -136,7 +137,7 @@ CREATE TABLE Reserver3(
 
 drop view if exists vueTechniciens;
 create view vueTechniciens as (
-select u.iduser,  u.nom, u.prenom, u.adresse, u.email, u.mdp, u.tel, t.qualification, t.dateentree from user u, technicien t where u.iduser = t.iduser);
+select u.iduser,  u.nom, u.prenom, u.adresse, u.email, u.mdp, u.tel, t.qualification, t.dateentree, t.roleBis from user u, technicien t where u.iduser = t.iduser);
 
 drop view if exists vueRestaurateurs;
 create view vueRestaurateurs as ( 
@@ -150,7 +151,7 @@ select u.*, c.fidelite, c.dateNaissance, c.promotion from user u, client c where
 -- les PROCEDURES STOCKEES --
 delimiter $
 drop procedure if exists insertTechnicien ;
-create procedure insertTechnicien (IN p_nom varchar(50), IN p_prenom varchar(50), IN p_adresse varchar(50), IN p_email varchar(50), IN p_mdp varchar(50),  IN p_tel varchar(50),IN p_role varchar(50), IN p_qualification varchar(50), IN p_dateentree date)
+create procedure insertTechnicien (IN p_nom varchar(50), IN p_prenom varchar(50), IN p_adresse varchar(50), IN p_email varchar(50), IN p_mdp varchar(50),  IN p_tel varchar(50),IN p_role varchar(50), IN p_qualification varchar(50), IN p_dateentree date, IN p_roleBis varchar(50))
 begin
 	declare p_iduser int (3);
 
@@ -158,7 +159,7 @@ begin
 	select iduser into p_iduser
 	from user
 	where nom = p_nom and prenom = p_prenom and email = p_email and mdp=p_mdp;
-	insert into technicien values(p_iduser, p_qualification, p_dateentree);
+	insert into technicien values(p_iduser, p_qualification, p_dateentree, p_roleBis);
 end $
 
 drop procedure if exists deleteTechnicien ;
@@ -169,11 +170,11 @@ begin
 end$
 
 drop procedure if exists updateTechnicien  ;
-create procedure updateTechnicien (IN p_nom varchar(50), IN p_prenom varchar(50), IN p_adresse varchar(50), IN p_email varchar(50), IN p_mdp varchar(50),  IN p_tel varchar(50),IN p_role varchar(50), IN p_qualification varchar(50), IN p_dateentree date, IN p_iduser int(3))
+create procedure updateTechnicien (IN p_nom varchar(50), IN p_prenom varchar(50), IN p_adresse varchar(50), IN p_email varchar(50), IN p_mdp varchar(50),  IN p_tel varchar(50),IN p_role varchar(50), IN p_qualification varchar(50), IN p_dateentree date, IN p_roleBis varchar(50), IN p_iduser int(3))
 begin 
    update user set nom = p_nom, prenom = p_prenom, adresse = p_adresse, email = p_email, mdp = p_mdp, tel = p_tel
    where iduser = p_iduser;
-   update technicien set qualification = p_qualification, dateentree = p_dateentree 
+   update technicien set qualification = p_qualification, dateentree = p_dateentree, roleBis = p_roleBis
    where iduser = p_iduser ;
 end $
 delimiter ;
@@ -246,13 +247,13 @@ call insertClient ("Ben Ahmed", "Okacha", "12 rue de Cléry", "O.ben-ahmed@cfa-i
 
 
 call insertTechnicien ("Morisseau", "Julien", "8 rue du CSS", "jm@gmail.com", "123", "0606060606",
-"technicien",  "Ingénieur son", "2000-12-12");
+"technicien",  "Ingénieur son", "2000-12-12", "admin");
 
 call insertTechnicien ("Zeboudj", "Mouhamed", "10 rue de Disney", "mz@gmail.com", "456", "0607070707", "technicien ",
- "technicien plateau", "2004-07-04");
+ "technicien plateau", "2004-07-04", "admin");
 
 call insertTechnicien ("Da Costa", "Lucas", "9 rue du repas", "ld@gmail.com", "789" ,"0707070707","technicien",
- "Technicien lumiere", "1994-02-08");
+ "Technicien lumiere", "1994-02-08", "admin");
 
 
 call insertRestaurateur ("Da Costa", "Lucas", "9 rue du repas", "ldacosta7797@gmail.com", "cuistot", "0707070707", "restaurateur",

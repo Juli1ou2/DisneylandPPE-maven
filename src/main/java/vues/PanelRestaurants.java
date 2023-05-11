@@ -34,7 +34,7 @@ public class PanelRestaurants extends PanelPrincipal implements ActionListener {
     private JTextField txtMot = new JTextField();
     private JButton btOk = new JButton("OK");
 
-    public PanelRestaurants() {
+    public PanelRestaurants(Technicien unTechnicien) {
         //construction du panelForm
         this.panelForm.setBounds(40, 80, 300, 300);
         this.panelForm.setLayout(new GridLayout(9, 2));
@@ -57,7 +57,11 @@ public class PanelRestaurants extends PanelPrincipal implements ActionListener {
         this.panelForm.add(btAnnuler);
         this.panelForm.add(btEnregistrer);
         this.panelForm.setBackground(Color.white);
-        this.panelForm.setVisible(true);
+        if(unTechnicien.getRoleBis().equals("admin")){
+            this.panelForm.setVisible(true);
+        } else{
+            this.panelForm.setVisible(false);
+        }
 
         this.add(panelForm);
 

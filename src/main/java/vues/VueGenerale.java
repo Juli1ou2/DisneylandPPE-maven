@@ -33,10 +33,10 @@ public class VueGenerale extends JFrame implements ActionListener, KeyListener {
 	private JButton btQuitter= new JButton("Quitter");
 	
 	private static PanelParcs unPanelParcs = new PanelParcs();
-	private static PanelAttractions unPanelAttractions= new PanelAttractions();
-	private static PanelTechniciens unPanelTechniciens= new PanelTechniciens();
-	private static PanelRestaurants unPanelRestaurants= new PanelRestaurants();
-	private static PanelRestaurateurs unPanelRestaurateurs= new PanelRestaurateurs();
+	private static PanelAttractions unPanelAttractions;
+	private static PanelTechniciens unPanelTechniciens;
+	private static PanelRestaurants unPanelRestaurants;
+	private static PanelRestaurateurs unPanelRestaurateurs;
 	private static PanelTransports unPanelTransports= new PanelTransports();
 
     public VueGenerale(Technicien unTechnicien) {
@@ -79,6 +79,10 @@ public class VueGenerale extends JFrame implements ActionListener, KeyListener {
 		this.btTransports.addActionListener(this);
 
 		//Insertion des paneaux dans la fenêtre
+		unPanelAttractions = new PanelAttractions(unTechnicien);
+		unPanelTechniciens = new PanelTechniciens(unTechnicien);
+		unPanelRestaurants = new PanelRestaurants(unTechnicien);
+		unPanelRestaurateurs = new PanelRestaurateurs(unTechnicien);
 		this.add(unPanelParcs);
 		this.add(unPanelAttractions);
 		this.add(unPanelTechniciens);
