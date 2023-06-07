@@ -268,7 +268,7 @@ insert into attraction values(null, "Big Thunder Moutain", "Ouverte", "Montagne 
 
 insert into attraction values(null, "Space Moutain", "Ouverte", "Montagne Russe", 1800, "40%", 20, "09:00", "19:00","images/space_mountain.jpeg", 1, 4);
 
-insert into attraction values(null, "It's a Small World", "Ouverte", "Dark Ride", 2400, "70%", 15, "09:00", "19:00","images/it's_a_small_world.jpeg", 1, 2);
+insert into attraction values(null, "It's a Small World", "Ouverte", "Dark Ride", 2400, "70%", 15, "09:00", "19:00","images/its_a_small_world.jpeg", 1, 2);
 
 insert into attraction values(null, "Peter Pan", "En Travaux", "Dark Ride", 1500, "Vide", 10, "09:00", "19:00","images/peter_pan.jpeg", 1, 2);
 
@@ -305,5 +305,4 @@ insert into transport values (null, "Interparc", "Navette interne", 150, "40%", 
 select * from vueClients;
 select * from vueTechniciens;
 select * from vueRestaurateurs;
-select * from attraction; 
-
+select * from attraction;
